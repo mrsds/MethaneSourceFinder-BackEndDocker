@@ -1,15 +1,50 @@
 #!/bin/sh
 
+echo ENVIRONMENT_NAME: $ENVIRONMENT_NAME
 
-HOSTADDR=${1:-0.0.0.0}
-HOSTPORT=${2:-9090}
-PGENDPOINT=${3:-methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com}
-PGPORT=${4:-5432}
-PGUSER=${5:-methane}
-PGPASSWORD=${6:-methaneCH4}
-S3BUCKET=${7:-methane}
-NUMSUBPROCS=${8:-0}
+case $ENVIRONMENT_NAME in
 
+  Development)
+    export HOSTADDR=0.0.0.0
+    export HOSTPORT=8001
+    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGPORT=5432
+    export PGUSER=methane
+    export PGPASSWORD=methaneCH4
+    export S3BUCKET=methane
+    export NUMSUBPROCS=2
+  ;;
+
+  UAT)
+    export HOSTADDR=0.0.0.0
+    export HOSTPORT=8001
+    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGPORT=5432
+    export PGUSER=methane
+    export PGPASSWORD=methaneCH4
+    export S3BUCKET=methane
+    export NUMSUBPROCS=4
+  ;;
+
+  Production)
+    export HOSTADDR=0.0.0.0
+    export HOSTPORT=8001
+    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGPORT=5432
+    export PGUSER=methane
+    export PGPASSWORD=methaneCH4
+    export S3BUCKET=methane
+    export NUMSUBPROCS=8
+  ;;
+
+  *)
+  echo "Environenment not specified, please set $ENVIRONMENT_NAME to one of Development, UAT, or Production"
+  exit
+  ;;
+
+esac
+
+echo Config info:
 echo Host: $HOSTADDR
 echo Port: $HOSTPORT
 echo PG Endpoint: $PGENDPOINT
@@ -18,5 +53,7 @@ echo PG User: $PGUSER
 echo PG Password: ------
 echo S3 Bucket: $S3BUCKET
 echo Number of Subprocesses: $NUMSUBPROCS
+
+echo Running: python -m msfbe.main --address=$HOSTADDR --port=$HOSTPORT --pgendpoint=$PGENDPOINT --pgport=$PGPORT --pguser=$PGUSER --pgpassword=$PGPASSWORD --s3bucket=$S3BUCKET --subprocesses=$NUMSUBPROCS
 
 python -m msfbe.main --address=$HOSTADDR --port=$HOSTPORT --pgendpoint=$PGENDPOINT --pgport=$PGPORT --pguser=$PGUSER --pgpassword=$PGPASSWORD --s3bucket=$S3BUCKET --subprocesses=$NUMSUBPROCS
