@@ -7,10 +7,10 @@ case $ENVIRONMENT_NAME in
   Development)
     export HOSTADDR=0.0.0.0
     export HOSTPORT=8001
-    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methane
-    export PGPASSWORD=methaneCH4
+    export PGUSER=methanesourcefinder
+    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
     export S3BUCKET=methane
     export NUMSUBPROCS=2
   ;;
@@ -18,10 +18,10 @@ case $ENVIRONMENT_NAME in
   UAT)
     export HOSTADDR=0.0.0.0
     export HOSTPORT=8001
-    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methane
-    export PGPASSWORD=methaneCH4
+    export PGUSER=methanesourcefinder
+    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
     export S3BUCKET=methane
     export NUMSUBPROCS=4
   ;;
@@ -29,10 +29,10 @@ case $ENVIRONMENT_NAME in
   Production)
     export HOSTADDR=0.0.0.0
     export HOSTPORT=8001
-    export PGENDPOINT=methane.cluster-cdae8kkz3fpi.us-west-2.rds.amazonaws.com
+    export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methane
-    export PGPASSWORD=methaneCH4
+    export PGUSER=methanesourcefinder
+    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
     export S3BUCKET=methane
     export NUMSUBPROCS=8
   ;;
