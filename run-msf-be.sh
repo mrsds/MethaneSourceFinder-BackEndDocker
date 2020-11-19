@@ -9,8 +9,8 @@ case $ENVIRONMENT_NAME in
     export HOSTPORT=8001
     export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methanesourcefinder
-    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
+    export PGUSER=svc_methanesourcefinder
+    export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
     export NUMSUBPROCS=2
   ;;
@@ -20,8 +20,8 @@ case $ENVIRONMENT_NAME in
     export HOSTPORT=8001
     export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methanesourcefinder
-    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
+    export PGUSER=svc_methanesourcefinder
+    export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
     export NUMSUBPROCS=4
   ;;
@@ -31,8 +31,8 @@ case $ENVIRONMENT_NAME in
     export HOSTPORT=8001
     export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
-    export PGUSER=methanesourcefinder
-    export PGPASSWORD=Y2u_5FtMm3v6Z2@p
+    export PGUSER=svc_methanesourcefinder
+    export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
     export NUMSUBPROCS=8
   ;;
