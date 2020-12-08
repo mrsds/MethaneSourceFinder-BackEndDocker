@@ -21,7 +21,7 @@ case $ENVIRONMENT_NAME in
     export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
     export PGPORT=5432
     export PGUSER=svc_methanesourcefinder
-    export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
+    export PGPASSWORD=#ZerzmN=bEj_UEGruc*r59sF4
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
     export NUMSUBPROCS=4
   ;;
