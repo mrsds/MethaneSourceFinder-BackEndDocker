@@ -18,7 +18,7 @@ case $ENVIRONMENT_NAME in
   UAT)
     export HOSTADDR=0.0.0.0
     export HOSTPORT=8001
-    export PGENDPOINT=oisuataurora-postgres.cluster-copuz2dqwywc.us-west-2.rds.amazonaws.com
+    export PGENDPOINT=ois-uat-aurora-postgresql-10-serverless.cluster-copuz2dqwywc.us-west-2.rds.amazonaws.com
     export PGPORT=5432
     export PGUSER=svc_methanesourcefinder
     export PGPASSWORD=#ZerzmN=bEj_UEGruc*r59sF4
