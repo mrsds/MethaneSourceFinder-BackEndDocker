@@ -263,8 +263,14 @@ where
 
         return results
 
+    @staticmethod
+    def __replace_s3_url(url, s3url):
+        if url is not None:
+            return url.replace("{s3}", s3url)
+        else:
+            return url
 
-    def __format_results(self, rows):
+    def __format_results(self, rows, s3url):
         results = []
         for row in rows:
             results.append({
@@ -284,12 +290,12 @@ where
                 "plume_latitude": row[FlyoverOfSourceColumns.PLUME_LATITUDE],
                 "flux": row[FlyoverOfSourceColumns.FLUX],
                 "flux_uncertainty": row[FlyoverOfSourceColumns.FLUX_UNCERTAINTY],
-                "png_url": row[FlyoverOfSourceColumns.PNG_URL],
-                "plume_url": row[FlyoverOfSourceColumns.PLUME_URL],
-                "rgbqlctr_url": row[FlyoverOfSourceColumns.RGBQLCTR_URL],
-                "png_url_thumb": row[FlyoverOfSourceColumns.PNG_URL_THUMB],
-                "plume_url_thumb": row[FlyoverOfSourceColumns.PLUME_URL_THUMB],
-                "rgbqlctr_url_thumb": row[FlyoverOfSourceColumns.RGBQLCTR_URL_THUMB]
+                "png_url": self.__replace_s3_url(row[FlyoverOfSourceColumns.PNG_URL], s3url),
+                "plume_url": self.__replace_s3_url(row[FlyoverOfSourceColumns.PLUME_URL], s3url),
+                "rgbqlctr_url": self.__replace_s3_url(row[FlyoverOfSourceColumns.RGBQLCTR_URL], s3url),
+                "png_url_thumb": self.__replace_s3_url(row[FlyoverOfSourceColumns.PNG_URL_THUMB], s3url),
+                "plume_url_thumb": self.__replace_s3_url(row[FlyoverOfSourceColumns.PLUME_URL_THUMB], s3url),
+                "rgbqlctr_url_thumb": self.__replace_s3_url(row[FlyoverOfSourceColumns.RGBQLCTR_URL_THUMB], s3url)
             })
         return results
 
@@ -299,7 +305,10 @@ where
         source_id = computeOptions.get_argument("source", None)
 
         rows = self.__query(args["webconfig"], source_id)
-        results = self.__format_results(rows)
+
+        s3url = args["webconfig"].get("s3", "s3.bucket")
+
+        results = self.__format_results(rows, s3url)
 
         return SimpleResult(results)
 
@@ -405,7 +414,14 @@ order by
 
         return results
 
-    def __format_results(self, rows):
+    @staticmethod
+    def __replace_s3_url(url, s3url):
+        if url is not None:
+            return url.replace("{s3}", s3url)
+        else:
+            return url
+
+    def __format_results(self, rows, s3url):
         results = []
         for row in rows:
             results.append({
@@ -432,8 +448,8 @@ order by
                 "sector_level_1": row[FlyoversOfFacilityColumns.SECTOR_LEVEL_1],
                 "sector_level_2": row[FlyoversOfFacilityColumns.SECTOR_LEVEL_2],
                 "sector_level_3": row[FlyoversOfFacilityColumns.SECTOR_LEVEL_3],
-                "rgbqlctr_url": row[FlyoversOfFacilityColumns.RGBQLCTR_URL],
-                "rgbqlctr_url_thumb": row[FlyoversOfFacilityColumns.RGBQLCTR_URL_THUMB]
+                "rgbqlctr_url": self.__replace_s3_url(row[FlyoversOfFacilityColumns.RGBQLCTR_URL], s3url),
+                "rgbqlctr_url_thumb": self.__replace_s3_url(row[FlyoversOfFacilityColumns.RGBQLCTR_URL_THUMB], s3url)
             })
         return results
 
@@ -441,7 +457,9 @@ order by
         vista_id = computeOptions.get_argument("vista_id", None)
 
         rows = self.__query(args["webconfig"], vista_id)
-        results = self.__format_results(rows)
+        s3url = args["webconfig"].get("s3", "s3.bucket")
+
+        results = self.__format_results(rows, s3url)
 
         return SimpleResult(results)
 
