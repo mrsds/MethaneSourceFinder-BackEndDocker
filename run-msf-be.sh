@@ -12,7 +12,7 @@ case $ENVIRONMENT_NAME in
     export PGUSER=svc_methanesourcefinder
     export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
-    export NUMSUBPROCS=2
+    export NUMSUBPROCS=4
   ;;
 
   UAT)
@@ -29,12 +29,12 @@ case $ENVIRONMENT_NAME in
   Production)
     export HOSTADDR=0.0.0.0
     export HOSTPORT=8001
-    export PGENDPOINT=oisdevaurora-postgres.cluster-cvzk9rdnz9on.us-west-2.rds.amazonaws.com
+    export PGENDPOINT=prj-prod-jplmsf-aurora-postgresql-10-serverless.cluster-c5w0nprylzvi.us-west-2.rds.amazonaws.com
     export PGPORT=5432
     export PGUSER=svc_methanesourcefinder
-    export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
+    export PGPASSWORD=-8$zzpPS)usrVMVh>H2v
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
-    export NUMSUBPROCS=8
+    export NUMSUBPROCS=16
   ;;
 
   *)
