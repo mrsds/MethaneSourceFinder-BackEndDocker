@@ -32,7 +32,7 @@ case $ENVIRONMENT_NAME in
     export PGENDPOINT=prj-prod-jplmsf-aurora-postgresql-10-serverless.cluster-c5w0nprylzvi.us-west-2.rds.amazonaws.com
     export PGPORT=5432
     export PGUSER=svc_methanesourcefinder
-    export PGPASSWORD=-8$zzpPS)usrVMVh>H2v
+    export PGPASSWORD='-8$zzpPS)usrVMVh>H2v'
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
     export NUMSUBPROCS=16
   ;;
