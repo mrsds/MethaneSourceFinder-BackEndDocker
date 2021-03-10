@@ -27,7 +27,7 @@ setuptools.setup(
         'pytz',
         'requests',
         'utm',
-        'shapely',
+        'shapely==1.7.1',
         'mock',
         'backports.functools-lru-cache==1.3',
         'boto3==1.15.17',
