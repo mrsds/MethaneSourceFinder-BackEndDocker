@@ -12,7 +12,7 @@ case $ENVIRONMENT_NAME in
     export PGUSER=svc_methanesourcefinder
     export PGPASSWORD=#aw^kHw5?QT48ff4M+dbW4x6j
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
-    export NUMSUBPROCS=0
+    export NUMSUBPROCS=2
   ;;
 
   UAT)
@@ -23,7 +23,7 @@ case $ENVIRONMENT_NAME in
     export PGUSER=svc_methanesourcefinder
     export PGPASSWORD=#ZerzmN=bEj_UEGruc*r59sF4
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
-    export NUMSUBPROCS=0
+    export NUMSUBPROCS=4
   ;;
 
   Production)
@@ -34,7 +34,7 @@ case $ENVIRONMENT_NAME in
     export PGUSER=svc_methanesourcefinder
     export PGPASSWORD='-8$zzpPS)usrVMVh>H2v'
     export S3BUCKET=https://carbmethane.s3-us-west-2.amazonaws.com
-    export NUMSUBPROCS=0
+    export NUMSUBPROCS=16
   ;;
 
   *)
