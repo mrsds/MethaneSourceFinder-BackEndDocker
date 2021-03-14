@@ -26,3 +26,4 @@ class HandlerImpl(BaseHandler):
                 return json.dumps(self.result)
 
         return SimpleResult({"API Status":"UP"})
+        
