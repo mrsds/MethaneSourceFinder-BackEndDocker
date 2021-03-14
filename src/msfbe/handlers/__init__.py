@@ -9,3 +9,4 @@ import msfbe.handlers.CountiesHandler
 import msfbe.handlers.StatsHandler
 import msfbe.handlers.ListHandlers
 import msfbe.handlers.SourcesHandler
+import msfbe.handlers.LandingPageHandler
