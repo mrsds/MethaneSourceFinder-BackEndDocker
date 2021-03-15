@@ -29,7 +29,7 @@ class SimpleResult(object):
 @service_handler
 class CountiesHandlerImpl(BaseHandler):
     name = "Counties Service"
-    path = "/counties"
+    path = "api/counties"
     description = ""
     params = {}
     singleton = True
