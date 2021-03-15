@@ -63,7 +63,7 @@ class VistaMetadataColumns:
 @service_handler
 class VistaHandlerImpl(BaseHandler):
     name = "Vista Service"
-    path = "api/vista"
+    path = "/api/vista"
     description = ""
     params = {}
     singleton = True

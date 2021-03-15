@@ -3,7 +3,7 @@ from msfbe.queryhandlers import *
 
 
 create_query_based_handler(
-    uri="api/list/counties",
+    uri="/api/list/counties",
     name="California Counties",
     sql="select county_id, name, area, perimeter from counties where name like %(name)s order by name;",
     params=[
@@ -19,7 +19,7 @@ create_query_based_handler(
 
 
 create_query_based_handler(
-    uri="api/list/sectors",
+    uri="/api/list/sectors",
     name="IPCCC Sectors",
     sql="select distinct s.sector_level_1, s.sector_level_2, s.sector_level_3 from vista as s where s.sector_level_1 is not null order by s.sector_level_1, s.sector_level_2, s.sector_level_3;",
     params=[
@@ -33,7 +33,7 @@ create_query_based_handler(
 )
 
 create_query_based_handler(
-    uri="api/plumesDateRange",
+    uri="/api/plumesDateRange",
     name="Min/Max Dates for Plume Detections",
     sql="select to_char(min(p.detection_timestamp), 'yyyy-mm-dd HH24:MI:SS') as min_date, to_char(max(p.detection_timestamp), 'yyyy-mm-dd HH24:MI:SS') as max_date from plumes as p;",
     params=[
@@ -46,7 +46,7 @@ create_query_based_handler(
 )
 
 create_query_based_handler(
-    uri="api/list/categories",
+    uri="/api/list/categories",
     name="Vista Categories",
     sql="""select distinct
   v.category_id,

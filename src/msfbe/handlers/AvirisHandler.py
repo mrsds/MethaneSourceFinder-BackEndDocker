@@ -57,7 +57,7 @@ class SimpleJsonResult(object):
 @service_handler
 class AvirisPlumeHandlerImpl(BaseHandler):
     name = "AVIRIS Plume Service"
-    path = "api/aviris/plumes"
+    path = "/api/aviris/plumes"
     description = ""
     params = {}
     singleton = True
@@ -255,7 +255,7 @@ where
 @service_handler
 class AvirisFlightHandlerImpl(BaseHandler):
     name = "AVIRIS Flightline Service"
-    path = "api/aviris/flights"
+    path = "/api/aviris/flights"
     description = ""
     params = {}
     singleton = True

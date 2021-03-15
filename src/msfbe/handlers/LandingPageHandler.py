@@ -9,7 +9,7 @@ from msfbe.webmodel import BaseHandler, service_handler
 @service_handler
 class HandlerImpl(BaseHandler):
     name = "Landing Page"
-    path = "api/"
+    path = "/api/"
     description = "Provides a valid return at / in order to pass Fargate health checks"
     params = {}
     singleton = True
