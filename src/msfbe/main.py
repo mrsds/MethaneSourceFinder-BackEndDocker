@@ -39,6 +39,9 @@ class BaseRequestHandler(tornado.web.RequestHandler):
 
     def run(self):
         self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
         reqObject = RequestObject(self)
         try:
             result = self.do_get(reqObject)
