@@ -318,7 +318,7 @@ select
   nearest_facility,
   flyover_count,
   plume_count,
-  plume_shape_wkt,
+  facility_envelope,
   geojson,
   id
 from
