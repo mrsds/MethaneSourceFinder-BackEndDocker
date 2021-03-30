@@ -292,45 +292,9 @@ where
 
         sql = """
 select
-  v.vista_id,
-  v.name,
-  v.site_name,
-  v.shape_type,
-  v.latitude,
-  v.longitude,
-  v.category,
-  v.category_id,
-  v.operator,
-  v.address,
-  v.state,
-  v.sector,
-  v.city,
-  vs.source_id,
-  vs.facility_poly_contains_source,
-  vs.distance,
-  s.area_name,
-  s.source_type,
-  s.source_latitude_deg,
-  s.source_longitude_deg,
-  s.sector_level_1,
-  s.sector_level_2,
-  s.sector_level_3,
-  s.nearest_facility,
-  vf.flyover_count,
-  vap.plume_count,
-  ST_asText(v.facility_envelope) as plume_shape_wkt,
-  v.geojson,
-  v.id
+  *
 from
-  vista as v
-  left join vista_sources as vs
-      on vs.vista_id = v.id
-  left join sources as s
-      on s.source_id = vs.source_id
-  left join (select distinct vista_id, count(1) as flyover_count from vista_flightlines group by vista_id) as vf
-      on vf.vista_id = v.id
-  left join (select distinct vista_id, count(1) as plume_count from vista_aviris_plumes group by vista_id) as vap
-      on vap.vista_id = v.id
+  vista_geo
 where
   ST_Intersects(v.facility_envelope, ST_MakeEnvelope(%s, %s, %s, %s, 4326))        
         {sourceidsql}
