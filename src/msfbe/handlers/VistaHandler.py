@@ -292,23 +292,51 @@ where
 
         sql = """
 select
-  *
+  vista_id,
+  name,
+  site_name,
+  shape_type,
+  latitude,
+  longitude,
+  category,
+  category_id,
+  operator,
+  address,
+  state,
+  sector,
+  city,
+  source_id,
+  facility_poly_contains_source,
+  distance,
+  area_name,
+  source_type,
+  source_latitude_deg,
+  source_longitude_deg,
+  sector_level_1,
+  sector_level_2,
+  sector_level_3,
+  nearest_facility,
+  flyover_count,
+  plume_count,
+  plume_shape_wkt,
+  geojson,
+  id
 from
   vista_geo
 where
-  ST_Intersects(v.facility_envelope, ST_MakeEnvelope(%s, %s, %s, %s, 4326))        
+  ST_Intersects(facility_envelope, ST_MakeEnvelope(%s, %s, %s, %s, 4326))        
         {sourceidsql}
         {categoryidsql};
         """
 
         if source_id is not None:
             source_id = "'%s'" % "','".join(source_id)
-            sourceidsql = " and vs.source_id in (%s) " % source_id
+            sourceidsql = " and source_id in (%s) " % source_id
         else:
             sourceidsql = ""
 
         if category is not None:
-            categoryidsql = " and v.category_id in (%s) " % ", ".join(map(str, category))
+            categoryidsql = " and category_id in (%s) " % ", ".join(map(str, category))
         else:
             categoryidsql = ""
 
