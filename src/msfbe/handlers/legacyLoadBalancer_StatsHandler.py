@@ -29,7 +29,7 @@ class SimpleResult(object):
 @service_handler
 class StatsHandlerImpl(BaseHandler):
     name = "Detection Rates by Sector"
-    path = "/detectionBySector"
+    path = "/api/detectionBySector"
     description = ""
     params = {}
     singleton = True
@@ -309,7 +309,7 @@ class FlyoverOfSourceColumns:
 @service_handler
 class FlyoverOfSourceHandlerImpl(BaseHandler):
     name = "Flyovers of Connected Plume Source"
-    path = "/flyoversOfPlumeSource"
+    path = "/api/flyoversOfPlumeSource"
     description = ""
     params = {}
     singleton = True
@@ -469,7 +469,7 @@ class FlyoversOfFacilityColumns:
 @service_handler
 class FlyoversOfFacilityHandlerImpl(BaseHandler):
     name = "Flyovers of Facility"
-    path = "/flyoversOfFacility"
+    path = "/api/flyoversOfFacility"
     description = ""
     params = {}
     singleton = True
@@ -614,7 +614,7 @@ def replace_nulls_with_zero_length_string(row, params):
     return row
 
 create_query_based_handler(
-    uri="/methanePlumeSources",
+    uri="/api/methanePlumeSources",
     name="Methane Plume Sources",
     sql="""
     select
@@ -684,7 +684,7 @@ create_query_based_handler(
 
 
 create_query_based_handler(
-    uri="/methanePlumeSourcesSummary",
+    uri="/api/methanePlumeSourcesSummary",
     name="Methane Plume Sources Summary",
     sql="""
     select
@@ -772,7 +772,7 @@ class EmissionsBySourceColumns:
 @service_handler
 class EmissionsBySourceHandlerImpl(BaseHandler):
     name = "Emissions by Source"
-    path = "/emissionsBySource"
+    path = "/api/emissionsBySource"
     description = ""
     params = {}
     singleton = True

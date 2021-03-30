@@ -33,7 +33,7 @@ class SourceListColumns:
 @service_handler
 class SourcesHandlerImpl(BaseHandler):
     name = "Sources Service"
-    path = "/sources"
+    path = "/api/sources"
     description = ""
     params = {}
     singleton = True
