@@ -1,3 +1,5 @@
+--This creates a materialized view that can replace an expensive portion of the vista api query, see update to VistaHandler.py where it is used
+
 CREATE MATERIALIZED VIEW public.vista_geo
 TABLESPACE pg_default
 AS SELECT v.vista_id,

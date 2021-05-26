@@ -1,3 +1,8 @@
+-- This creates a table to store precalculated detection stats which can be used to significantly speed up the query in StatsHandler.py.  
+-- The detection stats query takes a long time but ultimately only returns 6 rows per date range.  So this provides a significant speedup with only a little bit or additional storage
+-- Only the actual date ranges that contain stats are computed, and the query is smart enough to "snap" to the proper start and end date when getting an arbitrary input date range
+-- Note that you still need to populate the table using the populateCache.py script. 
+
 -- DROP TABLE public.detectionstats;
 
 CREATE TABLE public.detectionstats (
