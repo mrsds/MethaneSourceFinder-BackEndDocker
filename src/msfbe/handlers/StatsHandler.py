@@ -56,9 +56,8 @@ class StatsHandlerImpl(BaseHandler):
         to_date = "now()" if to_date is None else self.__format_dt(to_date)
         from_date = "1970-01-01" if from_date is None else self.__format_dt(from_date)
 
-        #--Beginning of stats cache insert 2021-03-22--
-        
-        # Were only trying to optimize the big slow query with no filters
+        # Try to use precalculated detection stats
+        # We're only trying to optimize the big slow query with no filters
 
         if county == "" and sector == "" and subsector == "":
             print("Trying to query cache...")
@@ -98,77 +97,13 @@ class StatsHandlerImpl(BaseHandler):
                     conn.close()
                     return results
 
-                #Else try to insert them and query again
-                print("Not in cache, trying to insert now...")
-                insertSql = """
-                    insert into detectionStats
-                    with snapDays as (
-                        select * from 
-                            (select obsDay as startDay from (
-                                select distinct flight_timestamp::date as obsDay from flightlines
-                                union 
-                                select distinct detection_timestamp::date as obsDay from plumes) as getDay
-                                where obsDay>=%s 
-                                order by obsDay
-                                limit 1
-                            ) as startDaySubQuery,
-                            (select obsDay as endDay from (
-                                select distinct flight_timestamp::date as obsDay from flightlines
-                                union 
-                                select distinct detection_timestamp::date as obsDay from plumes
-                                ) as getDay
-                                where obsDay<=%s 
-                                order by obsday desc
-                                limit 1
-                            ) as endDaySubQuery)
-                    select * from snapDays,(
-                    select 
-                    distinct
-                    v.sector_level_1,
-                    v.sector_level_2,
-                    count(distinct v.vista_id) as facilities,
-                    count(distinct vf.flightline_id) as facility_flyovers,
-                    count(distinct vf.vista_id) as unique_facilities_flown_over,
-                    count(distinct p.vista_id) as unique_facilities_with_plume_detections
-                    from
-                    counties as c,
-                    county_vista as cv,
-                    vista as v
-                    left join (select vf.vista_id, vf.flightline_id from vista_flightlines as vf, flightlines as f,snapdays where vf.flightline_id = f.flightline_id and f.flight_timestamp::date between snapdays.startday and snapdays.endday) vf
-                        on v.id = vf.vista_id
-                    left join (select * from plumes as p,snapdays where p.detection_timestamp::date between snapdays.startday and snapdays.endday) as p
-                        on p.vista_id = v.vista_id
-                    where
-                    c.name like '%%'
-                    and cv.county_id = c.county_id
-                    and v.id = cv.vista_id
-                    and v.sector_level_1 like '%%'
-                    and v.sector_level_2 like '%%'
-                    group by
-                    v.sector_level_1,
-                    v.sector_level_2
-                    ) as mainQuery
-                """
-                #print(insertSql % (from_date,to_date))
-                cur.execute(insertSql,(from_date,to_date))
-                conn.commit()
-                # Now try to query stats cache again
-                print("Trying to query stats cache again...")
-                cur.execute(cacheSql,(from_date,to_date))
-                results = cur.fetchall()
-
-                #See if results are now returned from the stats cache
-                if len(results) > 0:
-                    cur.close()
-                    conn.close()
-                    return results
             except:
                 print("Cache query did not work")
 
         #Else fall back to slow original query
         print("Falling back to original slow query")
 
-        #Not sure why I need to connect again, but above tries must mess up the cursor or connection?
+        #Not sure why I need to connect again, but above try must mess up the cursor or connection?
         cur.close()
         conn.close()
         conn = psycopg2.connect(dbname=config.get("database", "db.database"),
@@ -177,7 +112,6 @@ class StatsHandlerImpl(BaseHandler):
                                 host=config.get("database", "db.endpoint"),
                                 port=config.get("database", "db.port"))
         cur = conn.cursor()
-        #--End of stats cache insert 2021-03-22--
 
 
         sql = """
