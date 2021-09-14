@@ -2,7 +2,7 @@ FROM continuumio/anaconda
 COPY . /msf
 WORKDIR /msf
 
-RUN bash -c 'apt update'
+RUN bash -c 'apt-get --allow-releaseinfo-change update'
 RUN bash -c 'apt-get install -y build-essential'
 RUN bash -c 'apt-get install -y autoconf automake gdb git libffi-dev zlib1g-dev libssl-dev'
 RUN bash -c 'conda install -y gdal && cd /msf && python setup.py install'
