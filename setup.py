@@ -32,7 +32,7 @@ setuptools.setup(
         'backports.functools-lru-cache==1.3',
         'boto3==1.15.17',
         'pillow==5.0.0',
-        'psycopg2',
+        'psycopg2==2.8.6',
         'six',
         'psutil'
     ],
